@@ -18,17 +18,23 @@ namespace ConsoleApp3
             int i_teroc = 0;
             int i_quaoc = 0;
 
+            int i_cidr = 0;
+
             Console.Write("Digite o ip: ");
             s_ip = Console.ReadLine();
             string[] s_ipqb = s_ip.Split('.');
+            Console.Write("Digite o valor do CIDR: ");
+            i_cidr = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine();
             
             i_prioc = Convert.ToInt16(s_ipqb[0]);
             i_segoc = Convert.ToInt16(s_ipqb[1]);
             i_teroc = Convert.ToInt16(s_ipqb[2]);
             i_quaoc = Convert.ToInt16(s_ipqb[3]);
-            
+
             //Descobrir classe
-            if(i_prioc >= 1 && i_prioc <= 127)
+            Console.ForegroundColor = ConsoleColor.Green;
+            if (i_prioc >= 1 && i_prioc <= 127)
             {
                 Console.Write("CLASSE DO IP ---> [A]");
             }
@@ -50,9 +56,10 @@ namespace ConsoleApp3
                     }
                 }
             }
-            //
+            //Quantidade de hosts
+            Console.Write("\nQUANTIDADE DE HOSTS = {0}\n", Math.Pow(2, 32-i_cidr)-2);
             Console.ReadLine();
         }
     }
 }
-//Sendo criado por YagoSP 27/09/2024 
+//Sendo Criado por YagoSP 27/09/2024 
