@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
 namespace ConsoleApp3
 {
@@ -45,7 +46,7 @@ namespace ConsoleApp3
 	       O primeiro octeto tem que ter um valor entre 1 e 255 */
 	    for(i_counter = 0; i_counter <= 3; i_counter++)
 	    {
-	    	if(Convert.ToInt16(s_ipqb[0]) > 255 || Convert.ToInt16(s_ipqb[i_counter]) < 1)
+	    	if(Convert.ToInt16(s_ipqb[0]) > 255 || Convert.ToInt16(s_ipqb[0]) < 1)
 		{
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.Write("IPV4 INVALIDO!\n");
@@ -135,8 +136,36 @@ namespace ConsoleApp3
 	    uint ui_binmask = uint.MaxValue << (32 - i_cidr);
             s_binmask = Convert.ToString(ui_binmask, 2);
 	    Console.Write($"MASCARA EM BINARIO ---> {s_binmask}\n");
+
+	    //Essa parte eu peguei de um lugar onde muitos vão me julgar... mas deu certo.
+	    using (Ping ping = new Ping())
+	    {
+		try
+		{
+			PingReply reply = ping.Send(s_ip);
+			if(reply.Status == IPStatus.Success)
+			{
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.Write($"Conexão estabelecida com {s_ip}!");
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Write("Falha na conectividade!");				
+			}
+	 	}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Erro: {ex.Message}");
+		}
+	    }
+	    
+
+
+
 	    Console.ReadLine();
         
+
    	  //for(i_counter = 0; i_counter <= 3; i_counter++)
 	  //{
 	  //	Console.Write($"{Convert.ToString(iparray[i_counter])}\n");
@@ -161,5 +190,4 @@ namespace ConsoleApp3
 
     }
 }
-
-//Sendo Criado por YagoSP 29/09/2024 
+//Sendo Criado por YagoSP 27/09/2024 
