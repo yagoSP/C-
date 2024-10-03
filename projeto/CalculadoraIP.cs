@@ -179,15 +179,17 @@ namespace ConsoleApp3
 
 
 	//função para mascara de subrede
+	/* Tive que mudar para aspas duplas nan linha 188 pois eu estava programando no linux
+ 	   e na hora que eu fui rodar o codigo no windows ali foi o unico lugar que  deu pau :) */
 	public static string cidrtomask(int i_cidr)
 	{
 		uint mask = uint.MaxValue << (32 - i_cidr);
 		byte[] bytes = BitConverter.GetBytes(mask);
 		Array.Reverse(bytes);
-		return string.Join('.', bytes);
+		return string.Join(".", bytes);
 	}
 
 
     }
 }
-//Sendo Criado por YagoSP 27/09/2024 
+//Last update 03/10/2024
