@@ -48,4 +48,4 @@ namespace ConsoleApp3
     }
 }
 //Criado por YagoSP 26/09/2024 21:45
-//Preciso revisar esse código LIXO
+
