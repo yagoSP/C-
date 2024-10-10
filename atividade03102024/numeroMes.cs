@@ -64,3 +64,4 @@ namespace ConsoleApp3
 
     }
 }
+//Criado por YagoSP 10/10/2024 20:26
